@@ -28,11 +28,15 @@ class Solution:
 
             # advance slow pointer by 1 node
             slow_pointer = slow_pointer.next
-            # advance slow pointer by 2 nodes, safely
-            if fast_pointer.next and fast.pointer.next.next:
+            # advance fast pointer by 2 nodes, safely
+            if fast_pointer.next and fast_pointer.next.next:
                 fast_pointer = fast_pointer.next.next
             else:
+                # Reached end of list, no cycle
                 return False
+        # If loop finishes without finding a cycle (shouldn't happen with the logic above,
+        # but included for completeness or alternative implementations)
+        return False
 
 
 # Helper function to create a linked list from a list of values
@@ -64,42 +68,32 @@ def test_single_node_no_cycle():
     """Tests a list with a single node and no cycle."""
     solution = Solution()
     head = create_linked_list([1])
-    # assert not solution.hasCycle(head) # Expected: False
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert not solution.hasCycle(head) # Expected: False
 
 
 def test_multiple_nodes_no_cycle():
     """Tests a list with multiple nodes and no cycle."""
     solution = Solution()
     head = create_linked_list([1, 2, 3, 4])
-    # assert not solution.hasCycle(head) # Expected: False
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert not solution.hasCycle(head) # Expected: False
 
 
 def test_list_with_cycle():
     """Tests a list where the tail connects back to an earlier node."""
     solution = Solution()
     head = create_linked_list([3, 2, 0, -4], pos=1) # Cycle: -4 -> 2
-    # assert solution.hasCycle(head) # Expected: True
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert solution.hasCycle(head) # Expected: True
 
 
 def test_cycle_at_head():
     """Tests a list where the tail connects back to the head."""
     solution = Solution()
     head = create_linked_list([1, 2], pos=0) # Cycle: 2 -> 1
-    # assert solution.hasCycle(head) # Expected: True
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert solution.hasCycle(head) # Expected: True
 
 
 def test_single_node_cycle():
     """Tests a list with a single node pointing to itself."""
     solution = Solution()
     head = create_linked_list([1], pos=0) # Cycle: 1 -> 1
-    # assert solution.hasCycle(head) # Expected: True
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert solution.hasCycle(head) # Expected: True
