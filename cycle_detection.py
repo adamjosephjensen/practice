@@ -14,9 +14,25 @@ class Solution:
         Given the beginning of a linked list head, return true if there is a cycle in the linked list. Otherwise, return false.
         There is a cycle in a linked list if at least one node in the list can be visited again by following the next pointer
         """
-        # Implementation is omitted as requested.
-        # Replace this with the actual implementation when available.
-        raise NotImplementedError("Cycle detection logic not implemented")
+        if not head or not head.next:
+            return False
+
+        slow_pointer = head
+        fast_pointer = head.next
+
+        # while fast pointer isn't at the end of the list
+        # run the tortoise-hare procedure
+        while fast_pointer:
+            if slow_pointer == fast_pointer:
+                return True
+
+            # advance slow pointer by 1 node
+            slow_pointer = slow_pointer.next
+            # advance slow pointer by 2 nodes, safely
+            if fast_pointer.next and fast.pointer.next.next:
+                fast_pointer = fast_pointer.next.next
+            else:
+                return False
 
 
 # Helper function to create a linked list from a list of values
@@ -41,9 +57,7 @@ def test_empty_list():
     """Tests an empty list (head is None)."""
     solution = Solution()
     head = create_linked_list([])
-    # assert not solution.hasCycle(head) # Expected: False
-    with pytest.raises(NotImplementedError):
-         solution.hasCycle(head)
+    assert not solution.hasCycle(head) # Expected: False
 
 
 def test_single_node_no_cycle():
