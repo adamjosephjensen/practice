@@ -1,6 +1,7 @@
 from typing import List
 import unittest
-import heapq  # Using heapq is a common approach for this problem
+from heapq import nlargest, heapify, heappop, heappush
+
 
 class KthLargest:
     """
@@ -11,22 +12,23 @@ class KthLargest:
         """
         Initializes the object given an integer k and the stream of integers nums.
         """
-        # todo: Implement the initialization logic
-        # Hint: A min-heap is often useful here to keep track of the k largest elements.
         self.k = k
-        self.heap = [] # Placeholder
+        self.h = nlargest(self.k, nums)
+        heapify(self.h)
 
     def add(self, val: int) -> int:
         """
         Adds the integer val to the stream and returns the kth largest integer
         in the stream.
         """
-        # todo: Implement the logic to add a value and return the kth largest
-        # Hint: Add the new value to the heap and maintain its size at k.
-        # The root of the min-heap will be the kth largest element.
-        return -1 # Placeholder return value
+        # case 1: heap size is less than k
+        if len(self.h) < self.k:
+            heappush(self.h, val)
+        elif val > self.h[0]: # case: heap is already of size k, need to pop
+            heappop(self.h) # discard previous kth largest
+            heappush(self.h, val)
 
-
+        return self.h[0] # always return kth_largest
 # --- Tests ---
 
 class TestKthLargest(unittest.TestCase):
