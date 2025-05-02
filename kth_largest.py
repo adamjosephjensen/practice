@@ -1,5 +1,5 @@
 from typing import List
-from heapq import nlargest, heapify, heappop, heappush
+from heapq import nlargest, heapify, heappop, heappush, heappushpop
 # Note: No unittest import needed for pytest style tests
 
 
@@ -13,8 +13,8 @@ class KthLargest:
         Initializes the object given an integer k and the stream of integers nums.
         """
         self.k = k
-        self.h = nlargest(self.k, nums)
-        heapify(self.h)
+        self.heap = nlargest(self.k, nums)
+        heapify(self.heap)
 
     def add(self, val: int) -> int:
         """
@@ -22,13 +22,12 @@ class KthLargest:
         in the stream.
         """
         # case 1: heap size is less than k
-        if len(self.h) < self.k:
-            heappush(self.h, val)
-        elif val > self.h[0]: # case: heap is already of size k, need to pop
-            heappop(self.h) # discard previous kth largest
-            heappush(self.h, val)
+        if len(self.heap) < self.k:
+            heappush(self.heap, val)
+        elif val > self.heap[0]: # case: heap is already of size k, need to pop
+            heappushpop(self.heap, val)
 
-        return self.h[0] # always return kth_largest
+        return self.heap[0] # always return kth_largest
 
 # --- Pytest Tests ---
 
