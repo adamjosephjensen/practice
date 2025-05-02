@@ -97,4 +97,3 @@ def test_initial_list_smaller_than_k():
     # Add 0: Stream [1, 1, 1, 2, 5, 0]. 3rd largest is 1.
     assert kth_largest.add(0) == 1, "Test Case Small Init 4: Add 0"
 
-# Note: The if __name__ == "__main__": block is removed as pytest handles test execution.
