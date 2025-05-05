@@ -8,10 +8,21 @@ import pytest
 
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        products = [1] * len(nums)
         # fill an array with the products of the prior numbers up to i
-
+        prefix = 1
+        for l in nums:
+            products[l] = prefix
+            prefix *= nums[l]
+        
         # work backwards and multiply by the numbers from i + 1 to n
-        pass # Placeholder implementation
+        suffix = 1
+        for r in nums(len(nums), 0, -1):
+            products[r] *= suffix
+            suffix *= nums[r]
+
+        return products
+
 
 # Test Cases using pytest
 
