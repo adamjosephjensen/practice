@@ -13,13 +13,12 @@ class Solution:
         """
         Groups anagrams together from a list of strings.
         """
+        def char_freq(s: str) -> tuple[int, ...]:
+            return tuple(sum ( 1 for c in s if ord(c) - ord('a') == i) for i in range(26))
+
         freq_to_lists = dict()
         for s in strs:
-            freq = [0] * 26
-            # scan s to make the frequency histogram
-            for c in s:
-                freq[ord(c) - ord('a')] += 1
-            key = tuple(freq)
+            key = char_freq(s)
             freq_to_lists[key] = freq_to_lists.get(key, []) + [s]
 
         return freq_to_lists.values()
