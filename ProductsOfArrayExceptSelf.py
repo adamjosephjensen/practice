@@ -11,15 +11,16 @@ class Solution:
         products = [1] * len(nums)
         # fill an array with the products of the prior numbers up to i
         prefix = 1
-        for l in nums:
-            products[l] = prefix
-            prefix *= nums[l]
+        for i in range(len(nums)):
+            products[i] = prefix
+            prefix *= nums[i]
         
         # work backwards and multiply by the numbers from i + 1 to n
         suffix = 1
-        for r in nums(len(nums), 0, -1):
-            products[r] *= suffix
-            suffix *= nums[r]
+        # Iterate backwards through indices (from len(nums)-1 down to 0)
+        for i in range(len(nums) - 1, -1, -1):
+            products[i] *= suffix
+            suffix *= nums[i]
 
         return products
 
