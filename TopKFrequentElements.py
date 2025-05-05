@@ -130,5 +130,3 @@ def test_all_elements_same():
 # To run these tests, save the file (e.g., TopKFrequentElements.py)
 # and run `pytest TopKFrequentElements.py` in your terminal.
 
-```
-
