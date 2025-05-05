@@ -13,8 +13,16 @@ class Solution:
         """
         Groups anagrams together from a list of strings.
         """
-        # Implementation is omitted. Replace with actual logic.
-        raise NotImplementedError("groupAnagrams logic not implemented")
+        freq_to_lists = dict()
+        for s in strs:
+            freq = [0] * 26
+            # scan s to make the frequency histogram
+            for c in s:
+                freq[ord(c) - ord('a')] += 1
+            key = tuple(freq)
+            freq_to_lists[key] = freq_to_lists.get(key, []) + [s]
+
+        return freq_to_lists.values()
 
 # Helper function to compare lists of lists ignoring order of sublists and order within sublists
 def sort_result(result: List[List[str]]) -> List[List[str]]:
