@@ -32,61 +32,61 @@ def test_example_case():
     solution = Solution()
     input_strs = ["eat","tea","tan","ate","nat","bat"]
     expected_result = [["bat"],["nat","tan"],["ate","eat","tea"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_empty_list():
     """Tests an empty input list."""
     solution = Solution()
     input_strs = []
     expected_result = []
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_list_with_empty_strings():
     """Tests a list containing empty strings."""
     solution = Solution()
     input_strs = ["", "b", ""]
     expected_result = [["", ""], ["b"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_no_anagrams():
     """Tests a list where no strings are anagrams of each other."""
     solution = Solution()
     input_strs = ["abc", "def", "ghi"]
     expected_result = [["abc"], ["def"], ["ghi"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_all_anagrams():
     """Tests a list where all strings are anagrams of each other."""
     solution = Solution()
     input_strs = ["listen", "silent", "enlist"]
     expected_result = [["enlist", "listen", "silent"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_single_character_strings():
     """Tests a list with single character strings."""
     solution = Solution()
     input_strs = ["a", "b", "a", "c", "b"]
     expected_result = [["a", "a"], ["b", "b"], ["c"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
 def test_duplicates_in_input():
     """Tests a list containing duplicate strings."""
     solution = Solution()
     input_strs = ["eat", "tea", "eat"]
     expected_result = [["eat", "eat", "tea"]]
-    with pytest.raises(NotImplementedError):
-        solution.groupAnagrams(input_strs)
-    # assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
+    # with pytest.raises(NotImplementedError):
+    #     solution.groupAnagrams(input_strs)
+    assert sort_result(solution.groupAnagrams(input_strs)) == sort_result(expected_result)
 
