@@ -20,7 +20,17 @@ class Solution:
         "|5hello|5world" returns ["hello", "world"]
         "|0" returns [""]
         """
-        pass
+        p = 0
+        decoding = []
+        while p < len(s):
+            length = int(s[p+1:p+2])
+            p += 2
+            word = "" + s[p:p+length]
+            decoding.append(word)
+            p += length
+
+        return decoding
+
 
 import pytest
 
