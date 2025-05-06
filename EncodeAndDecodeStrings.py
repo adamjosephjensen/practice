@@ -27,7 +27,7 @@ def test_encoding_none():
     solution = Solution()
     s = ""
     r = solution.encode([s])
-    assert r = "|0"
+    assert r == "|0" # Corrected typo: was `assert r = "|0"`
 
 def test_encoding_one():
     solution = Solution()
@@ -42,10 +42,22 @@ def test_encoding_many():
     assert r == "|5hello|5world" 
 
 def test_decoding_none():
-    pass
+    solution = Solution()
+    encoded_s = "|0"
+    expected_s_list = [""]
+    r = solution.decode(encoded_s)
+    assert r == expected_s_list
 
-def test_encoding_one():
-    pass
+def test_decoding_one(): # Corrected function name
+    solution = Solution()
+    encoded_s = "|5hello"
+    expected_s_list = ["hello"]
+    r = solution.decode(encoded_s)
+    assert r == expected_s_list
 
-def test_encoding_many():
-    pass
+def test_decoding_many(): # Corrected function name
+    solution = Solution()
+    encoded_s = "|5hello|5world"
+    expected_s_list = ["hello", "world"]
+    r = solution.decode(encoded_s)
+    assert r == expected_s_list
