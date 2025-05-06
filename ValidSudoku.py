@@ -44,6 +44,31 @@
 from typing import List
 
 class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        """ uses three lists of 9 sets to check the duplicate constraints """
+        row_sets = [set() for _ in range(9)]
+        col_sets = [set() for _ in range(9)]
+        gridsets = [set() for _ in range(9)]
+
+        for row in range(9):
+            for col in range(9):
+                s = board[row][col]
+                if s == ".":
+                    continue
+                i = int(s)
+                g = (row // 3) * 3 + col // 3
+                
+                if i in row_sets[row] or i in col_sets[col] or i in gridsets[g]:
+                    return False
+                
+                row_sets[row].add(i)
+                col_sets[col].add(i)
+                gridsets[g].add(i)
+
+        return True
+
+
+class FirstAttemptSolution:
     @staticmethod
     def parse_int_or_none(s):
         try:
