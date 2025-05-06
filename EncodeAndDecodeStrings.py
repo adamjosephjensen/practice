@@ -73,3 +73,31 @@ def test_decoding_many(): # Corrected function name
     expected_s_list = ["hello", "world"]
     r = solution.decode(encoded_s)
     assert r == expected_s_list
+
+def test_encoding_special_chars_single_string():
+    solution = Solution()
+    s = ["!@#$%^&*()"]
+    r = solution.encode(s)
+    # Length of "!@#$%^&*()" is 10
+    assert r == "|10!@#$%^&*()"
+
+def test_decoding_special_chars_single_string():
+    solution = Solution()
+    encoded_s = "|10!@#$%^&*()"
+    expected_s_list = ["!@#$%^&*()"]
+    r = solution.decode(encoded_s)
+    assert r == expected_s_list
+
+def test_encoding_special_chars_multiple_strings():
+    solution = Solution()
+    s = ["we","say",":","yes","!@#$%^&*()"]
+    r = solution.encode(s)
+    # Lengths: "we" (2), "say" (3), ":" (1), "yes" (3), "!@#$%^&*()" (10)
+    assert r == "|2we|3say|1:|3yes|10!@#$%^&*()"
+
+def test_decoding_special_chars_multiple_strings():
+    solution = Solution()
+    encoded_s = "|2we|3say|1:|3yes|10!@#$%^&*()"
+    expected_s_list = ["we","say",":","yes","!@#$%^&*()"]
+    r = solution.decode(encoded_s)
+    assert r == expected_s_list
