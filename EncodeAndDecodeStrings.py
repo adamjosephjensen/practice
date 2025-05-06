@@ -14,21 +14,34 @@ class Solution:
         return encoding
 
     def decode(self, s: str) -> List[str]:
-        """ expect one string with |n before each sub where n is the length
-        of the substring
-        return a list of strings.
-        "|5hello|5world" returns ["hello", "world"]
-        "|0" returns [""]
+        """Decodes a single string into a list of strings.
+        The input string is expected to be in the format: |length1STRING1|length2STRING2...
+        where 'lengthX' is the numerical length of 'STRINGX'.
+        Example: "|5hello|10helloworld" decodes to ["hello", "helloworld"]
+        "|0" decodes to [""] (representing an empty string in the list if encoded as |0)
         """
-        p = 0
+        p = 0 # current position, should be at a '|'
         decoding = []
         while p < len(s):
-            length = int(s[p+1:p+2])
-            p += 2
-            word = "" + s[p:p+length]
+            # p is at the '|'
+            idx_after_pipe = p + 1
+            
+            # Find where the digits for the length end.
+            # The actual string starts immediately after these digits.
+            start_of_string_idx = idx_after_pipe 
+            while start_of_string_idx < len(s) and s[start_of_string_idx].isdigit():
+                start_of_string_idx += 1
+            
+            length_str = s[idx_after_pipe : start_of_string_idx]
+            length = int(length_str)
+            
+            # The actual string is s[start_of_string_idx : start_of_string_idx + length]
+            word = s[start_of_string_idx : start_of_string_idx + length]
             decoding.append(word)
-            p += length
-
+            
+            # Move p to the beginning of the next segment (i.e., the next '|')
+            p = start_of_string_idx + length
+            
         return decoding
 
 
