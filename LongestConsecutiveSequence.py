@@ -25,25 +25,15 @@ from typing import List
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        """
-        there is an O(n^2) implmentation where
-        one scans for sequences starting at every single number
-        this could be improved by sorting to O(nlogn) with sorting
-        the solution hints at a 1 pass implementation in O(n) time
-        something about sets, but how to keep track of when sets need to glom together?
-        """
         bag = frozenset(nums)
-        sequences = []
         longest = 0
         for n in nums:
             if n - 1 not in bag:
                 # number could be the start of the longest sequence
                 seq = n + 1
-                length = 1
                 while seq in bag:
                     seq += 1
-                    length += 1
-                longest = max(length, longest)
+                longest = max(seq - n + 1, longest)
 
         return longest
 
