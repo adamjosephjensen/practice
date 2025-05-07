@@ -110,7 +110,8 @@ def test_duplicates_in_input_handled_correctly():
     # Triplets:
     # (-1, -1, 2)
     # (-1, 0, 1)
-    expected = [[-1,-1,2], [-1,0,1]]
+    # (-4, 2, 2)
+    expected = [[-1,-1,2], [-1,0,1], [-4,2,2]]
     actual = solution.threeSum(nums)
     assert sort_triplets_for_comparison(actual) == sort_triplets_for_comparison(expected)
 
