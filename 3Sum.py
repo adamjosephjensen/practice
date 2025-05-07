@@ -33,9 +33,44 @@ from typing import List
 
 # 3 <= nums.length <= 1000
 # -10^5 <= nums[i] <= 10^5V
+# Input: nums = [-4,-1,-1,0,1,2]
 from typing import List # Ensure List is imported for the test functions if not globally
 
+
 class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        triplets = []
+        for c in range(len(nums)-2):
+            if c >= 1 and nums[c] == nums[c - 1]:  # skip duplicates
+                continue
+            # want -num[c] = num[l] + num[r], where num[l] <= num[r] if l < r
+            l, r = c+1, len(nums) - 1 # last index
+            while l < r:
+                total = nums[c] + nums[l] + nums[r]
+                if total == 0:
+                    triplets.append([nums[c], nums[l], nums[r]])
+                    l += 1
+                    r -= 1
+                    while l < r and nums[l] == nums[l-1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r+1]:
+                        r -= 1
+                elif total < 0:
+                    l += 1
+                else:
+                    r -= 1
+
+        return triplets
+
+                    
+
+
+
+
+
+
+class FirstSolution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         val_to_index = dict(zip(nums, range(len(nums)))) # how does this work with repeats? I think later nums will just overwrite earlier nums
         triplets = set()
@@ -64,6 +99,7 @@ solution = Solution()
 def test_example_1():
     """Tests the first example from the problem description."""
     nums = [-1,0,1,2,-1,-4]
+    print(sorted(nums))
     expected = [[-1,-1,2],[-1,0,1]]
     actual = solution.threeSum(nums)
     assert sort_triplets_for_comparison(actual) == sort_triplets_for_comparison(expected)
