@@ -33,14 +33,25 @@ from typing import List
 
 # 3 <= nums.length <= 1000
 # -10^5 <= nums[i] <= 10^5V
+from typing import List # Ensure List is imported for the test functions if not globally
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        pass
+        val_to_index = dict(zip(nums, range(len(nums)))) # how does this work with repeats? I think later nums will just overwrite earlier nums
+        triplets = set()
+        for o_i, o_val in enumerate(nums):
+            for i_i, i_val in enumerate(nums):
+                # want o_val + i_val + x == 0, where the indices are all distinct
+                complement = -1 * (o_val + i_val)
+                triplet = (complement in val_to_index)
+                if triplet and o_i != i_i and o_i != val_to_index[complement] and i_i != val_to_index[complement]:
+                    triplets.add(tuple(sorted([o_val, i_val, complement])))
+
+        return [list(t) for t in triplets]
+
 
 # tests
 import pytest
-from typing import List # Ensure List is imported for the test functions if not globally
 
 # Helper function to sort the results for robust comparison
 # The order of triplets in the output list and the order of numbers within a triplet do not matter.
