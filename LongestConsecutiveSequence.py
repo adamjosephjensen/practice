@@ -30,8 +30,8 @@ class Solution:
         for n in nums:
             if n - 1 not in bag:
                 # number could be the start of the longest sequence
-                seq = n + 1
-                while seq in bag:
+                seq = n
+                while seq + 1 in bag:
                     seq += 1
                 longest = max(seq - n + 1, longest)
 
