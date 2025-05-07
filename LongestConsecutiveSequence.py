@@ -21,7 +21,9 @@
 
 # 0 <= nums.length <= 1000
 # -10^9 <= nums[i] <= 10^9
+from typing import List
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        pass
 
