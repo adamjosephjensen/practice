@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from 3Sum import Solution # Assuming the file is renamed to threesum.py or adjust import
+from threesum import Solution # Assuming the file is renamed to threesum.py or adjust import
 
 # Helper function to sort the results for robust comparison
 # The order of triplets in the output list and the order of numbers within a triplet do not matter.
