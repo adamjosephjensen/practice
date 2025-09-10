@@ -41,25 +41,28 @@ class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         triplets = []
-        for c in range(len(nums)-2):
-            if c >= 1 and nums[c] == nums[c - 1]:  # skip duplicates
+        for lo in range(len(nums)-2):
+            if lo > 0 and nums[lo] == nums[lo - 1]:  # skip duplicates after nums[0]
                 continue
             # want -num[c] = num[l] + num[r], where num[l] <= num[r] if l < r
-            l, r = c+1, len(nums) - 1 # last index
-            while l < r:
-                total = nums[c] + nums[l] + nums[r]
+            mid = lo + 1 # mid starts in the middle
+            hi = len(nums) - 1 # hi starts at last index
+            while mid < hi: # increase mid if value is too low, decrease hi if value is too high
+                total = nums[lo] + nums[mid] + nums[hi]
                 if total == 0:
-                    triplets.append([nums[c], nums[l], nums[r]])
-                    l += 1
-                    r -= 1
-                    while l < r and nums[l] == nums[l-1]:
-                        l += 1
-                    while l < r and nums[r] == nums[r+1]:
-                        r -= 1
+                    triplets.append([nums[lo], nums[mid], nums[hi]])
+                    mid += 1
+                    hi -= 1
+                    while mid < hi and nums[mid] == nums[mid-1]: # while not complete, skip dupllicates
+                        mid += 1
+                    while mid < hi and nums[hi] == nums[hi+1]: # while not complete, skip duplicates
+                        hi -= 1
                 elif total < 0:
-                    l += 1
+                    mid += 1
                 else:
-                    r -= 1
+                    hi -= 1
+                # maintain invariant: lo < mid < hi
+                assert lo+1 <= mid <= hi+1, "bad pointer move"
 
         return triplets
 
