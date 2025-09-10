@@ -22,14 +22,6 @@ def test_example_3():
     result = solution.twoSum(nums, target)
     assert sorted(result) == sorted([0,1])
 
-def test_no_solution_if_allowed_though_problem_implies_one_exists():
-    # Standard LeetCode problem guarantees one solution.
-    # If it didn't, this would be a valid test.
-    # For now, we assume a solution is always found.
-    nums = [1,2,3]
-    target = 7
-    assert solution.twoSum(nums, target) == [] # Or raise error, depending on contract
-
 def test_negative_numbers():
     nums = [-1, -3, 7, 15]
     target = 4
