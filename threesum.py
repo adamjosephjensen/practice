@@ -36,8 +36,56 @@ from typing import List
 # Input: nums = [-4,-1,-1,0,1,2]
 from typing import List # Ensure List is imported for the test functions if not globally
 
+class _2025_09_10_Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+		# ThreeSum is a two-pointer problem
+        # algorithm: first sort array
+        # then fix the minimum value and do a two-pointer search the mid, hi val to find a sum
+        # be careful about duplicates
+        nums.sort()
+        n = len(nums)
+        triplets = []
+        for low_idx in range(n - 2):
+            mid_idx = low_idx+1
+            hi_idx = n-1
+            # handle duplicate values of low_id
+            if 0 < low_idx and nums[low_idx] == nums[low_idx-1]:
+                continue
 
-class Solution:
+            while mid_idx < hi_idx:
+                # evaluate the sum
+                triplet = [nums[low_idx], nums[mid_idx], nums[hi_idx]]
+                total = sum(triplet)
+                # if spot on, add ascending triplet to results list, advance ptrs
+                if total == 0:
+                    triplets.append(triplet)
+                    # increment mid_idx; skip duplicates
+                    mid_idx += 1
+                    while mid_idx < hi_idx and nums[mid_idx] == nums[mid_idx - 1]:
+                        mid_idx +=1
+
+                    # decrement hi_idx while skipping duplicates
+                    hi_idx -= 1
+                    while mid_idx < hi_idx and nums[hi_idx] == nums[hi_idx + 1]:
+                        hi_idx -= 1
+
+                # if too low, increment the mid_idx
+                elif(total < 0):
+                    mid_idx += 1
+                    while mid_idx < hi_idx and nums[mid_idx] == nums[mid_idx - 1]:
+                        mid_idx +=1
+                # if too high, decrement the hi_idx
+                elif(0 < total):
+                    hi_idx -= 1
+                    while mid_idx < hi_idx and nums[hi_idx] == nums[hi_idx + 1]:
+                        hi_idx -= 1
+                else:
+                    assert 0, "should be impossible"
+
+        return triplets
+
+
+class Old_Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         triplets = []
@@ -66,13 +114,6 @@ class Solution:
 
         return triplets
 
-                    
-
-
-
-
-
-
 class FirstSolution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         val_to_index = dict(zip(nums, range(len(nums)))) # how does this work with repeats? I think later nums will just overwrite earlier nums
@@ -86,3 +127,5 @@ class FirstSolution:
                     triplets.add(tuple(sorted([o_val, i_val, complement])))
 
         return [list(t) for t in triplets]
+
+Solution = _2025_09_10_Solution
