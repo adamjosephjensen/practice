@@ -36,6 +36,51 @@ from typing import List
 # Input: nums = [-4,-1,-1,0,1,2]
 from typing import List # Ensure List is imported for the test functions if not globally
 
+class _2025_09_24_Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # sort the list
+        _numbers = sorted(nums)
+        n = len(nums)
+        triplets = []
+        # loop over all numbers
+        #print(f" The list is: {_numbers}")
+        for i in range(n - 2):
+            # fix i (lowest)
+            # skip duplicates for i
+            if i > 0 and _numbers[i] == _numbers[i-1]:
+                continue
+        
+            # initialize j equal to the next highest, and k equal to the highest
+            j = i + 1
+            k = n - 1
+            while j < k:
+                #print(f"i: {i}, j: {j}, k: {k}")
+                #print(f"i_val: {_numbers[i]}, j_val: {_numbers[j]}, k_val: {_numbers[k]}")
+                _sum = _numbers[i] + _numbers[j] + _numbers[k]
+                #print(f"The sum is: {_sum}")
+                # if _sum is negative, then increase j bc _sum needs to go up towards 0
+                if _sum < 0:
+                    j += 1
+                    while j < k and _numbers[j] == _numbers[j-1]:
+                        j += 1
+                # if _sum is positive, then decrease k bc _sum needs to go down towards 0
+                elif 0 < _sum:
+                    k -= 1
+                    while j < k and _numbers[k] == _numbers[k+1]:
+                        k -= 1
+                # if _sum is zero, this is a triplet, so add it then increase j and decrease k
+                elif 0 == _sum:
+                    triplets.append([_numbers[i],_numbers[j],_numbers[k]])
+                    j += 1
+                    while j < k and _numbers[j] == _numbers[j-1]:
+                        j += 1
+                    k -= 1
+                    while j < k and _numbers[k] == _numbers[k+1]:
+                        k -= 1
+                else:
+                    assert 0, "impossible"
+        return triplets
+
 class _2025_09_10_Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
 		# ThreeSum is a two-pointer problem
@@ -128,4 +173,4 @@ class FirstSolution:
 
         return [list(t) for t in triplets]
 
-Solution = _2025_09_10_Solution
+Solution = _2025_09_24_Solution
