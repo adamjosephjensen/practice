@@ -36,6 +36,50 @@ from typing import List
 # Input: nums = [-4,-1,-1,0,1,2]
 from typing import List # Ensure List is imported for the test functions if not globally
 
+class _2025_09_29_Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        """
+        fix the lowest value, run two-pointer search for valid triplets
+        incremental development: write test cases with no duplicates, get that working
+        then get it working for test cases with duplicates
+        """
+        nums.sort()
+        n = len(nums)
+        ans = []
+        # fix each lowest value i
+        for i in range(n):
+            # after the first iteration, skip duplicates
+            if 0 < i and nums[i] == nums[i-1]:
+                continue
+            j = i + 1
+            k = n - 1
+            # while there are triplets left to check
+            while j < k:
+                # compute the total
+                _sum = nums[i] + nums[j] + nums[k]
+                # if too high, reduce the total
+                if 0 < _sum:
+                    k -= 1
+                    while j < k and nums[k] == nums[k+1]:
+                        k -= 1
+                # if too low, increase the total
+                elif _sum < 0:
+                    j += 1
+                    while j < k and nums[j] == nums[j-1]:
+                        j += 1
+                # if total == 0 then save the triple and keep looking
+                elif _sum == 0:
+                    ans.append([nums[i], nums[j], nums[k]])
+                    j += 1
+                    k -= 1
+                    while j < k and nums[j] == nums[j-1]:
+                        j += 1
+                    while j < k and nums[k] == nums[k+1]:
+                        k -= 1
+                else:
+                    assert 0, "impossible"
+        return ans
+
 class _2025_09_24_Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         # sort the list
@@ -173,4 +217,4 @@ class FirstSolution:
 
         return [list(t) for t in triplets]
 
-Solution = _2025_09_24_Solution
+Solution = _2025_09_29_Solution
