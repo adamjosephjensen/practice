@@ -43,6 +43,65 @@
 
 from typing import List
 
+class _2025_09_29_Solution:
+    
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        """
+        keep track of contents with 27 set objects
+        for each cell i, j
+            check row contraints
+            check col constraints
+            check box constraints
+        
+        incremental plan: could make test cases for each check
+        then test it one at a time
+        """
+        n = 9
+        _row = [set() for _ in range(n)] 
+        _col = [set() for _ in range(n)]
+        _box = [set() for _ in range(n)]
+        
+        for r in range(n):
+            for c in range(n):
+                # print(f"considering value: {board[r][c]} at row: {r} col: {c}")
+                if board[r][c] == ".":
+                    continue
+                
+                val = int(board[r][c])
+
+                # gotta be in 1-9
+                if val not in set([1,2,3,4,5,6,7,8,9]):
+                    return False
+                
+                # check row duplicate
+                if val in _row[r]:
+                    print(f"row duplicate at row: {r} col: {c} value: {val}")
+                    print(f"_row[r]: {_row[r]}")
+                    return False
+                else:
+                    print(f"adding {val} to row: {r}")
+                    _row[r].add(val)
+                # check column duplicate
+                if val in _col[c]:
+                    print("col duplicate")
+                    return False
+                else:
+                    # print(f"adding {val} to col: {c}")
+                    _col[c].add(val)
+                # check box duplicate
+                sub_box_row = r // 3
+                sub_box_col = c // 3
+                flattened_i = sub_box_row * 3 + sub_box_col
+
+                if val in _box[flattened_i]:
+                    print("sub-box duplicate")
+                    return False
+                else:
+                    # print(f"adding {val} to flattened_i: {flattened_i}")
+                    _box[flattened_i].add(val)
+
+        return True
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         """ uses three lists of 9 sets to check the duplicate constraints """
@@ -128,3 +187,5 @@ class FirstAttemptSolution:
             return False
 
         return True
+
+Solution = _2025_09_29_Solution
