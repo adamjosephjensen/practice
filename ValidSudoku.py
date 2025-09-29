@@ -94,7 +94,7 @@ class _2025_09_29_Solution:
                 flattened_i = sub_box_row * 3 + sub_box_col
 
                 if val in _box[flattened_i]:
-                    print("sub-box duplicate")
+                    # print("sub-box duplicate")
                     return False
                 else:
                     # print(f"adding {val} to flattened_i: {flattened_i}")
