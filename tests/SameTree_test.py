@@ -1,6 +1,6 @@
 import pytest
 from typing import Optional
-from SameTree import Solution, TreeNode
+from prac.SameTree import Solution, TreeNode
 
 solution = Solution()
 

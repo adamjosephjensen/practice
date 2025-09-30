@@ -1,5 +1,5 @@
 import pytest
-from climbStairs import Solution
+from prac.ClimbStairs import Solution
 
 # --- Test Cases ---
 

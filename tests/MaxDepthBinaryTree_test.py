@@ -1,6 +1,6 @@
 import pytest
 from typing import Optional
-from MaxDepthBinaryTree import Solution, TreeNode
+from prac.MaxDepthBinaryTree import Solution, TreeNode
 
 solution = Solution()
 

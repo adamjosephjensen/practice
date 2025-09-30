@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from BinarySearchProblem import BinarySearch
+from prac.BinarySearchProblem import BinarySearch
 
 solver = BinarySearch() # Renamed from 'b' in notebook for clarity
 

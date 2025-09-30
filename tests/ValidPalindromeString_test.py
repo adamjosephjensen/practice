@@ -1,5 +1,5 @@
 import pytest
-from ValidPalindromeString import Solution
+from prac.ValidPalindromeString import Solution
 
 solution = Solution()
 

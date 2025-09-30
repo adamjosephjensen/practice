@@ -1,5 +1,5 @@
 import pytest
-from ValidParentheses import Solution
+from prac.ValidParentheses import Solution
 
 solution = Solution()
 

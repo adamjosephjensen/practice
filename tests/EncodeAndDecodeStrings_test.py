@@ -1,6 +1,6 @@
 import pytest
 from typing import List # Ensure List is imported if needed by tests
-from EncodeAndDecodeStrings import Solution
+from prac.EncodeAndDecodeStrings import Solution
 
 # Test none, one, many, delim
 def test_encoding_none():

@@ -1,6 +1,6 @@
 import pytest
 from typing import List, Dict # Keep Dict if any test helpers might use it
-from TopKFrequentElements import Solution
+from prac.TopKFrequentElements import Solution
 
 # --- Test Cases using pytest ---
 

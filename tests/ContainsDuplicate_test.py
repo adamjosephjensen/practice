@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from ContainsDuplicate import Solution
+from prac.ContainsDuplicate import Solution
 
 solution = Solution()
 

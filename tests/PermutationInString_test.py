@@ -3,7 +3,7 @@
 
 import pytest
 
-from PermutationInString import Solution  # adjust if your module name differs
+from prac.PermutationInString import Solution  # adjust if your module name differs
 
 
 @pytest.mark.parametrize(

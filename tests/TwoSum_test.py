@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from TwoSum import Solution
+from prac.TwoSum import Solution
 
 solution = Solution()
 

@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from ValidSudoku import Solution
+from prac.ValidSudoku import Solution
 
 # Test Cases using pytest
 

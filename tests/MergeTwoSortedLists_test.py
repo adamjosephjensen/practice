@@ -1,6 +1,6 @@
 import pytest
 from typing import Optional, List as PyList # Use PyList to avoid conflict with ListNode
-from MergeTwoSortedLists import Solution, ListNode
+from prac.MergeTwoSortedLists import Solution, ListNode
 
 solution = Solution()
 

@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from BestTimeToBuySellStock import Solution
+from prac.BestTimeToBuySellStock import Solution
 
 solution = Solution()
 

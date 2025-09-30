@@ -1,6 +1,6 @@
 import pytest
 from typing import List # Ensure List is imported
-from ProductsOfArrayExceptSelf import Solution
+from prac.ProductsOfArrayExceptSelf import Solution
 
 # Test Cases using pytest
 

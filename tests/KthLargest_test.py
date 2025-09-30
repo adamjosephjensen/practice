@@ -1,6 +1,6 @@
 import pytest # Add pytest import
 from typing import List # Ensure List is imported if needed by tests
-from kth_largest import KthLargest
+from prac.KthLargest import KthLargest
 
 # --- Pytest Tests ---
 

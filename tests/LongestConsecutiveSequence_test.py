@@ -1,6 +1,6 @@
 import pytest
 from typing import List # Add List if not already present from Solution
-from LongestConsecutiveSequence import Solution
+from prac.LongestConsecutiveSequence import Solution
 
 # Instantiate the solution class
 solution = Solution()

@@ -1,6 +1,6 @@
 import pytest
 from typing import Optional, List # Add List for create_linked_list values
-from cycle_detection import Solution, ListNode
+from prac.CycleDetection import Solution, ListNode
 
 # Helper function to create a linked list from a list of values
 # and optionally create a cycle by connecting the tail to the node at pos index.

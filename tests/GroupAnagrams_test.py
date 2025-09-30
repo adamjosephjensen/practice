@@ -1,6 +1,6 @@
 import pytest
 from typing import List
-from GroupAnagrams import Solution
+from prac.GroupAnagrams import Solution
 from collections import defaultdict # Not strictly needed for tests but good if helpers evolve
 
 # Helper function to compare lists of lists ignoring order of sublists and order within sublists

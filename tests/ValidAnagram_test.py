@@ -1,5 +1,5 @@
 import pytest
-from ValidAnagram import Solution
+from prac.ValidAnagram import Solution
 
 solution = Solution()
 
