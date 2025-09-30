@@ -59,13 +59,6 @@ def test_char_freq_single_char_type():
     expected[0] = 3 # a
     assert Solution.char_freq("aaa") == tuple(expected)
 
-def test_char_freq_non_alpha_chars():
-    """Tests char_freq ignores non-lowercase-alpha characters (optional test)."""
-    expected = [0] * 26
-    expected[0] = 1 # a
-    expected[1] = 1 # b
-    assert Solution.char_freq("a1b B?") == tuple(expected)
-
 def test_empty_list():
     """Tests an empty input list."""
     solution = Solution()

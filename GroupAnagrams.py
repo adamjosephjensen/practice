@@ -10,8 +10,7 @@ class Solution:
     def char_freq(s):
         freq_arr = [0] * 26
         for c in s:
-            if 'a' <= c <= 'z':
-                freq_arr[ord(c) - ord('a')] += 1
+            freq_arr[ord(c) - ord('a')] += 1
         return tuple(freq_arr)
 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -37,7 +36,7 @@ class Solution:
             _count = Solution.char_freq(s)
             dd[_count].append(s)
         
-        return list(dd.values())
+        return [v for v in dd.values()]
 
 class OldSolution:
     @staticmethod
