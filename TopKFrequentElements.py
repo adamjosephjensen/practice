@@ -8,8 +8,41 @@
 
 # Import necessary types
 from typing import List, Dict
+from collections import defaultdict
 
-class Solution:
+class _2025_09_30_Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        Given nums and k, return k most frequent from nums, in any order
+        Lower bound: O(n) to count the frequency for each element
+        Brute force: count the frequency using a dictionary (defaultdict(int)),
+        sort the frequencies, return the top K, complexity: (O) n * log(n).
+        Insight: we don't need to sort because the return order doesn't matter
+        and the frequencies are bounded (the max frequency is len(nums)).
+        So we can use half of Bucket Sort with len(nums) buckets, but without sorting
+        the buckets to retain O(n) runtime.
+        """
+        val_to_freq = defaultdict(int)
+        for val in nums:
+            val_to_freq[val] +=1
+        
+        # create empty buckets (max n)
+        freq_to_val: List[List[int]] = [[] for _ in range(len(nums) + 1)]
+        # for all buckets
+        for val, freq in val_to_freq.items():
+            # add val to the appropriate frequency bucket
+            freq_to_val[freq].append(val)
+        
+        top_k: List[int] = []
+        # in order of decreasing frequency, build the return list
+        for freq in range(len(nums), 0, -1):
+            if freq_to_val[freq]: # [] is false
+                top_k.extend(freq_to_val[freq]) # put the whole bucket on the list
+        
+        return top_k[:k]
+    
+
+class OldSolution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         # create mapping from num to frequency
         counts: Dict[int, int] = dict()
@@ -41,4 +74,6 @@ class Solution:
                 return k_frequent[:k]
         # Return the collected elements, slicing to k if necessary (e.g., if nums was empty or k > len(unique_nums))
         return k_frequent[:k]
+
+Solution = _2025_09_30_Solution
 
