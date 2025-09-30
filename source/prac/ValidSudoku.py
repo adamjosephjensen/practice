@@ -43,6 +43,28 @@
 
 from typing import List
 
+class _2025_09_30_Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row = [set() for _ in range(9)]
+        col = [set() for _ in range(9)]
+        box = [set() for _ in range(9)]
+
+        for r in range(9):
+            for c in range(9):
+                cur = board[r][c]
+                if cur == ".": continue
+                g = (r // 3) * 3 + c // 3
+                
+                # check for duplicates
+                if cur in row[r] or cur in col[c] or cur in box[g]:
+                    print(f"problem at row: {r} col: {c} g: {g} current: {cur}")
+                    return False
+                # if no duplicates, add to the sets
+                row[r].add(cur)
+                col[c].add(cur)
+                box[g].add(cur)
+        # if we get to here, the board must be valid
+        return True
 class _2025_09_29_Solution:
     
     def isValidSudoku(self, board: List[List[str]]) -> bool:
@@ -188,4 +210,4 @@ class FirstAttemptSolution:
 
         return True
 
-Solution = _2025_09_29_Solution
+Solution = _2025_09_30_Solution
