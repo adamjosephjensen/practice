@@ -1,4 +1,12 @@
 from typing import List
+class _2025_09_30_Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d = {}
+        for index, val in enumerate(nums):
+            lookup = target - val
+            if lookup in d:
+                return [d[lookup], index]
+            d[val] = index
 
 class Pre_2025_09_09_Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -12,4 +20,4 @@ class Pre_2025_09_09_Solution:
             indices[n] = idx
         return [] # Should not be reached if problem guarantees a solution
 
-Solution = Pre_2025_09_09_Solution
+Solution = _2025_09_30_Solution
