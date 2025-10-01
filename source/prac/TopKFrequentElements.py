@@ -10,6 +10,25 @@
 from typing import List, Dict
 from collections import defaultdict
 
+class _2025_10_01_Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        num_to_freq = defaultdict(int)
+        n = len(nums)
+        for num in nums:
+            num_to_freq[num] += 1
+        
+        freq_to_num = [[] for _ in range(n+1)]
+
+        for num, freq in num_to_freq.items():
+            freq_to_num[freq].append(num)
+
+        retval = []
+        for f in range(n,0,-1):
+            adding = freq_to_num[f]
+            retval.extend(adding)
+
+        return retval[:k]
+
 class _2025_09_30_Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         """
@@ -75,5 +94,5 @@ class OldSolution:
         # Return the collected elements, slicing to k if necessary (e.g., if nums was empty or k > len(unique_nums))
         return k_frequent[:k]
 
-Solution = _2025_09_30_Solution
+Solution = _2025_10_01_Solution
 

@@ -23,6 +23,29 @@
 # -10^9 <= nums[i] <= 10^9
 from typing import List
 
+class _2025_09_30_Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        """
+        Given an array of integers nums
+        return the length of the longest consecutive sequence
+        of elements that can be formed.
+
+        Input: [2, 20, 4, 10, 3, 4, 5]
+        Output: 4
+
+        Naive: sort the list, then scan it for sequences, tracking the current + max
+        """
+        _set = set(nums)
+        _max = 0
+        for n in nums:
+            if n - 1 not in _set:
+                val = n
+                while val + 1 in _set:
+                    val += 1
+                _max = max(val - n + 1, _max)
+        
+        return _max
+
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         bag = frozenset(nums)
@@ -36,3 +59,5 @@ class Solution:
                 longest = max(seq - n + 1, longest)
 
         return longest
+
+Solution = _2025_09_30_Solution 
