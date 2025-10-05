@@ -11,28 +11,21 @@ from typing import List
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        _stack = tokens
-        while len(_stack) > 1:
-            # process RPN
-            left = int(_stack.pop(0))
-            right = int(_stack.pop(0))
-            op = _stack.pop(0)
-            res = 0
-            if op == '+':
-                res = left + right
-            elif op == '-':
-                res = left - right
-            elif op == '*':
-                res = left * right
-            elif op == '/':
-                # division truncates towards zero
-                res = int(left / right)
+        stack: list[int] = []
+        for tok in tokens:
+            if tok in {'+', '-', '*', '/'}:
+                b = stack.pop()
+                a = stack.pop()
+                if tok == '+':
+                    stack.append(a + b)
+                elif tok == "-":
+                    stack.append(a - b)
+                elif tok == "*":
+                    stack.append(a * b)
+                else:
+                    stack.append(int(a / b))
             else:
-                print(f"left: {left}, right: {right}, op: {op}, _stack: {_stack}, res: {res}")
-                assert 0, "wrong operator"
-            print(f"_stack: {_stack}, res: {res}")
-            _stack = [res] + tokens
-            print(f"_stack after mutation: {_stack}")
+                stack.append(int(tok))
 
-        return int(_stack[0])
+        return stack[-1] if stack else None
            
