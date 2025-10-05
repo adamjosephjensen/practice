@@ -14,7 +14,7 @@ class MinStack:
         push the smaller of the new val, or the old min onto self._mins
         """
         self._vals.append(val)
-        m = val if not self._mins else min(val, self._mins[-1])
+        m = min(val, self._mins[-1]) if self._mins else val
         self._mins.append(m)
         
 
