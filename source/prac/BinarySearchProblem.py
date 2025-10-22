@@ -1,6 +1,23 @@
 from typing import List
 
-class BinarySearch:
+
+class _2025_10_22_Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lo = 0
+        hi = len(nums) - 1
+        while lo <= hi:
+            mid = lo + (hi - lo) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                lo = mid + 1
+            elif target < nums[mid]:
+                hi = mid -1
+            else:
+                assert 0, "cannot occur"
+        return -1
+
+class OldBinarySearch:
     def search(self, nums: List[int], target: int) -> int:
         # Using iterative approach from notebook as it's generally preferred
         left, right = 0, len(nums) - 1
@@ -27,3 +44,5 @@ class BinarySearch:
                 return _search(guess_index + 1, right)
             return _search(left, guess_index - 1)
         return _search(0,len(nums)-1)
+
+Solution = _2025_10_22_Solution
